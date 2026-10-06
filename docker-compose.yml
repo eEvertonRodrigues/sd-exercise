@@ -1,0 +1,17 @@
+services:
+  app:
+    build: .
+    ports:
+      - "5050:5050"
+    environment:
+      - REDIS_HOST=redis
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:alpine
+    volumes:
+      - redis-data:/data
+
+volumes:
+  redis-data:
