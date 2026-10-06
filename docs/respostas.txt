@@ -1,10 +1,31 @@
 Questão 01
+Os serviços precisam se comunicar. Como fazer isso?
+Resposta: Criando uma rede (network) e conectando-os a ela. Assim os conteineres vão conseguir se alcançar através dessa rede. 
+
 Questão 02
+Por que utilizar o nome do serviço é mais adequado do que utilizar diretamente o IP do container?
+Resposta: Por uma questão de abstração. Quando eu uso o IP para acessar um determinado serviço, estou acessando uma instância específica daquele serviço o que pode não ser interessante por N motivos. Motivos esses que vão desde de: eu posso estar acessando uma instância congestionada do serviço (quando em um ambiente de produção ou coisa parecida) até: se derrubarem os conteineres os IPs dos serviços que eu esteva acessando vão mudar e eu teria que procurar os novos IPs e acessar cada um deles de novo. 
+
 Questão 03
+Por que foi necessário utilizar --build?
+Para atualizar a imagem 
+
 Questão 04
+Qual é a função do Dockerfile na aplicação?
+É como se ele fosse um script que define uma ordem de comandos sequênciais que visam automatizar a criação de uma imagem. 
+
 Questão 05
+Qual é a função do Redis nessa arquitetura?
+Nesse caso: só de "banco de dados" mesmo, ele não é usado para nada além de persistir a quantidade de acessos e os "convidados" que eu adicionei para testar.
+
 Questão 06
+Como o container Flask consegue encontrar o Redis sem conhecer seu endereço IP?
+O docker tem um DNS próprio, aparentemente. E ele usa isso para mapear os nomes das coisas para os seus IPs. Então, se o Flask tiver o nome do Redis, o Flask consegue encontrar o Redis sem saber o seu IP. E, como o nome do redis é passado pro Flask como variável de ambiente e ele tranquilamente consegue achar o Redis.
+
 Questão 07
+Qual é a função do volume utilizado pelo Redis?
+Garantir que quando os conteineres caiam\sejam derrubados a informação seja persistida.
+
 Questão 08
-Questão 09
-Questão 10
+Qual problema o Docker Compose resolve em relação à execução manual dos containers?
+Facilita a vida, permitindo que eu não tenha que subir conteiner a conteiner indicando as imagens, volume, rede, variáveis de ambiente e etc... Eu orquestro tudo com comando mais simples.
